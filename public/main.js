@@ -1423,11 +1423,6 @@ var TablaPosicionesComponent = /** @class */ (function () {
     return TablaPosicionesComponent;
 }());
 
-{
-    {
-        { }
-    }
-}
 
 
 /***/ }),
@@ -3030,7 +3025,7 @@ var LobbyComponent = /** @class */ (function () {
         console.log(form.value);
         this.equiposService.crearEquipoNuevo(form.value.nombreEquipo, this.idUser).then(function () {
             _this.modalService.dismissAll();
-            _this.router.navigate(['/miequipo']);
+            _this.router.navigate(['/sinliga']);
         }).catch(function (err) {
             console.log(err);
         });
@@ -3353,7 +3348,7 @@ var EquiposService = /** @class */ (function () {
         var _this = this;
         console.log(nombre + " - " + currentUser);
         return new Promise(function (resolve, reject) {
-            _this.http.post('http://127.0.0.1:3000/api/equipo', {
+            _this.http.post('https://salty-retreat-40908.herokuapp.com/api/equipo', {
                 nombre: nombre,
                 propietario: currentUser
             }).subscribe(function (teamInfo) {
@@ -3387,7 +3382,7 @@ var EquiposService = /** @class */ (function () {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]().set('x-idUser', idPropietario);
             // return this.equipos.filter(equipo => (equipo.propietario == idPropietario));
             console.log('Prueba 3 : ' + idPropietario);
-            _this.http.get('http://127.0.0.1:3000/api/equipo', { headers: headers }).subscribe(function (data) {
+            _this.http.get('https://salty-retreat-40908.herokuapp.com/api/equipo', { headers: headers }).subscribe(function (data) {
                 console.log('En EquipoService: ');
                 console.log(data);
                 console.log(data['equipos']);
@@ -5347,7 +5342,7 @@ var UsuarioService = /** @class */ (function () {
     UsuarioService.prototype.addUser = function (user) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.http.post('http://127.0.0.1:3000/api/usuario/register', {
+            _this.http.post('https://salty-retreat-40908.herokuapp.com/api/usuario/register', {
                 usuario: user.nombre,
                 password: user.password,
                 email: user.email,
@@ -5363,7 +5358,7 @@ var UsuarioService = /** @class */ (function () {
     UsuarioService.prototype.loginvalidate = function (userV, pass) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.http.post('http://127.0.0.1:3000/api/usuario/login', {
+            _this.http.post('https://salty-retreat-40908.herokuapp.com/api/usuario/login', {
                 usuario: userV,
                 password: pass
             }).subscribe(function (token) {
@@ -5388,7 +5383,7 @@ var UsuarioService = /** @class */ (function () {
         var _this = this;
         console.log('From GetCurrentUserID');
         console.log(this.currentToken);
-        this.http.get('http://127.0.0.1:3000/api/usuario/login', {
+        this.http.get('https://salty-retreat-40908.herokuapp.com/api/usuario/login', {
             headers: { token: this.currentToken.toString() }
         }).subscribe(function (data) {
             console.log(data);
